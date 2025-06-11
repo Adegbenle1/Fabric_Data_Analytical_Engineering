@@ -1,0 +1,188 @@
+INPUT:
+{
+    "source": {
+        "type": "DelimitedTextSource",
+        "storeSettings": {
+            "type": "HttpReadSettings",
+            "requestMethod": "GET"
+        },
+        "formatSettings": {
+            "type": "DelimitedTextReadSettings"
+        },
+        "datasetSettings": {
+            "annotations": [],
+            "type": "DelimitedText",
+            "typeProperties": {
+                "location": {
+                    "type": "HttpServerLocation",
+                    "relativeUrl": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/AdventureWorks_Customers.csv"
+                },
+                "columnDelimiter": ",",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true,
+                "quoteChar": "\""
+            },
+            "schema": [],
+            "externalReferences": {
+                "connection": "3f465e3e-3b37-4b42-b602-75bc9142b733"
+            }
+        }
+    },
+    "sink": {
+        "type": "DelimitedTextSink",
+        "storeSettings": {
+            "type": "LakehouseWriteSettings"
+        },
+        "formatSettings": {
+            "type": "DelimitedTextWriteSettings",
+            "fileExtension": ".txt"
+        },
+        "datasetSettings": {
+            "annotations": [],
+            "linkedService": {
+                "name": "Ade_Prep_Bronze_LH",
+                "properties": {
+                    "annotations": [],
+                    "type": "Lakehouse",
+                    "typeProperties": {
+                        "workspaceId": "27f767b0-d0ff-4f80-aba4-f63ef1eae3a0",
+                        "artifactId": "ff0d312e-69a6-4b45-94ec-31f0f2ba76c7",
+                        "rootFolder": "Files"
+                    }
+                }
+            },
+            "type": "DelimitedText",
+            "typeProperties": {
+                "location": {
+                    "type": "LakehouseLocation",
+                    "fileName": "Adventures_Customers.csv",
+                    "folderPath": "Raw Data"
+                },
+                "columnDelimiter": ",",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true,
+                "quoteChar": "\""
+            },
+            "schema": []
+        }
+    },
+    "enableStaging": false,
+    "translator": {
+        "type": "TabularTranslator",
+        "typeConversion": true,
+        "typeConversionSettings": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+        }
+    }
+}
+
+
+OUTPUT:
+{
+	"dataRead": 1945574,
+	"dataWritten": 1945574,
+	"filesRead": 1,
+	"filesWritten": 1,
+	"sourcePeakConnections": 1,
+	"sinkPeakConnections": 1,
+	"copyDuration": 12,
+	"throughput": 243.197,
+	"errors": [],
+	"usedDataIntegrationUnits": 4,
+	"usedParallelCopies": 1,
+	"executionDetails": [
+		{
+			"source": {
+				"type": "HttpServer"
+			},
+			"sink": {
+				"type": "Lakehouse"
+			},
+			"status": "Succeeded",
+			"start": "6/10/2025, 1:37:06 PM",
+			"duration": 12,
+			"usedDataIntegrationUnits": 4,
+			"usedParallelCopies": 1,
+			"profile": {
+				"queue": {
+					"status": "Completed",
+					"duration": 3
+				},
+				"transfer": {
+					"status": "Completed",
+					"duration": 8,
+					"details": {
+						"listingSource": {
+							"type": "HttpServer",
+							"workingDuration": 0
+						},
+						"readingFromSource": {
+							"type": "HttpServer",
+							"workingDuration": 0
+						},
+						"writingToSink": {
+							"type": "Lakehouse",
+							"workingDuration": 4
+						}
+					}
+				}
+			},
+			"detailedDurations": {
+				"queuingDuration": 3,
+				"transferDuration": 8
+			}
+		}
+	],
+	"dataConsistencyVerification": {
+		"VerificationResult": "Unsupported"
+	}
+}
+
+
+LOOKUP VALUE activitiy output:
+{
+	"count": 8,
+	"value": [
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Products.csv",
+			"p_sink_folder": "AdventureWorks_Product_Categories",
+			"p_sink_file": "AdventureWorks_Product_Categories.csv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Calendar.csv",
+			"p_sink_folder": "AdventureWorks_Calendar",
+			"p_sink_file": "AdventureWorks_Calendar.csv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Customers.csv",
+			"p_sink_folder": "AdventureWorks_Customers",
+			"p_sink_file": "AdventureWorks_Customers.csv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Product_Subcategories.csv",
+			"p_sink_folder": "Product_Subcategories",
+			"p_sink_file": "AdventureWorks_Product_Subcategories.csv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Products.csv",
+			"p_sink_folder": "AdventureWorks_Products",
+			"p_sink_file": "AdventureWorks_Products.csv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Sales_2016.csv",
+			"p_sink_folder": "AdventureWorks_Sales_2016",
+			"p_sink_file": "AdventureWorks_Sales_2016.cvsv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Sales_2017.csv",
+			"p_sink_folder": "AdventureWorks_Sales_2017",
+			"p_sink_file": "AdventureWorks_Sales_2017.csv"
+		},
+		{
+			"p_rel_url": "Adegbenle1/Fabric_Data_Analytical_Engineering/refs/heads/main/Data/AdventureWorks_Territories.csv",
+			"p_sink_folder": "AdventureWorks_Territories",
+			"p_sink_file": "AdventureWorks_Territories.csv"
+		}
+	]
+}
